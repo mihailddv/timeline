@@ -1,0 +1,114 @@
+.timeline {
+  display: flex;
+  margin-bottom: 40px;
+  padding: 50px 10px 50px 0;
+
+  .step {
+    flex-grow: 1;
+  }
+
+  &--v1,
+  &--v3 {
+    .step {
+      &:not(:first-child):not(:last-child) {
+        .step {
+          &-text {
+            transform: translateX(-40%);
+          }
+        }
+      }
+
+      &:first-child {
+        .step {
+          &-text {
+            left: 3px;
+          }
+        }
+      }
+
+      &:last-child {
+        flex-grow: 0;
+
+        .step {
+          &-text {
+            right: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  &--v1 {
+    .step {
+      &-text {
+        top: -$labelPos;
+      }
+    }
+  }
+
+  &--v3 {
+    .step {
+      &-text {
+        bottom: -$labelPos;
+      }
+    }
+  }
+
+  &--v2,
+  &--v4 {
+    .step {
+      &:last-child {
+        &:after {
+          display: block;
+        }
+      }
+
+      &:first-child {
+        .step {
+          &-line {
+            background: $secondary-color;
+          }
+        }
+      }
+
+      &--complete {
+        &+.step {
+          .step {
+            &-line {
+              background: $secondary-color;
+            }
+          }
+        }
+
+        &+.step--complete {
+          .step {
+            &-line {
+              background: $primary-color
+            }
+          }
+        }
+      }
+
+      &-text {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &--v2 {
+    .step {
+      &-text {
+        top: -$labelPos;
+      }
+    }
+  }
+
+  &--v4 {
+    .step {
+      &-text {
+        bottom: -$labelPos;
+      }
+    }
+  }
+}

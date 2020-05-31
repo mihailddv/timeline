@@ -1,0 +1,21 @@
+.panel {
+  &-steps {
+    margin-bottom: 50px;
+  }
+
+  &-btn {
+    @extend .button-action;
+
+    margin-right: 2vw;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-item {
+    &__caption {
+      margin-bottom: 20px;
+    }
+  }
+}
