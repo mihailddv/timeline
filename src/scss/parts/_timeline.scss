@@ -7,8 +7,8 @@
     flex-grow: 1;
   }
 
-  &--v1,
-  &--v3 {
+  &TopSide,
+  &BottomSide {
     .step {
       &:not(:first-child):not(:last-child) {
         .step {
@@ -38,7 +38,7 @@
     }
   }
 
-  &--v1 {
+  &TopSide {
     .step {
       &-text {
         top: -$labelPos;
@@ -46,7 +46,7 @@
     }
   }
 
-  &--v3 {
+  &BottomSide {
     .step {
       &-text {
         bottom: -$labelPos;
@@ -54,8 +54,8 @@
     }
   }
 
-  &--v2,
-  &--v4 {
+  &TopCenter,
+  &BottomCenter {
     .step {
       &:last-child {
         &:after {
@@ -96,7 +96,7 @@
     }
   }
 
-  &--v2 {
+  &TopCenter {
     .step {
       &-text {
         top: -$labelPos;
@@ -104,7 +104,7 @@
     }
   }
 
-  &--v4 {
+  &BottomCenter {
     .step {
       &-text {
         bottom: -$labelPos;

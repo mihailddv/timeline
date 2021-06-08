@@ -59,49 +59,70 @@ const config = {
       },
       {
         test: /\.(scss|css)$/,
-        use: [
+        oneOf: [
+          // это соответствует `<style module>`
           {
-            loader: 'vue-style-loader',
+            resourceQuery: /module/,
+            use: [
+              'vue-style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: {
+                    localIdentName: '[name]__[local]___[hash:base64:5]',
+                  },
+                },
+              },
+              'sass-loader',
+            ],
           },
+          // это соответствует простому `<style>` или `<style scoped>`
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {},
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-              url: false,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              sourceMap: true,
-              plugins: () => [
-                require('cssnano')({
-                  preset: [
-                    'default',
-                    {
-                      discardComments: {
-                        removeAll: true,
-                      },
-                    },
+            use: [
+              {
+                loader: 'vue-style-loader',
+              },
+              {
+                loader: MiniCssExtractPlugin.loader,
+                options: {},
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: true,
+                  url: false,
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  ident: 'postcss',
+                  sourceMap: true,
+                  plugins: () => [
+                    require('cssnano')({
+                      preset: [
+                        'default',
+                        {
+                          discardComments: {
+                            removeAll: true,
+                          },
+                        },
+                      ],
+                    }),
+                    autoprefixer({
+                      overrideBrowserslist: ['last 2 version'],
+                    }),
                   ],
-                }),
-                autoprefixer({
-                  overrideBrowserslist: ['last 2 version'],
-                }),
-              ],
-            },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              prependData: '@import "src/scss/component.scss";',
-            },
+                },
+              },
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: true,
+                  prependData: '@import "src/scss/component.scss";',
+                },
+              },
+            ],
           },
         ],
       },
