@@ -1,0 +1,114 @@
+.timeline {
+  display: flex;
+  margin-bottom: 40px;
+  padding: 50px 10px 50px 0;
+
+  .step {
+    flex-grow: 1;
+  }
+
+  &TopSide,
+  &BottomSide {
+    .step {
+      &:not(:first-child):not(:last-child) {
+        .step {
+          &-text {
+            transform: translateX(-40%);
+          }
+        }
+      }
+
+      &:first-child {
+        .step {
+          &-text {
+            left: 3px;
+          }
+        }
+      }
+
+      &:last-child {
+        flex-grow: 0;
+
+        .step {
+          &-text {
+            right: 3px;
+          }
+        }
+      }
+    }
+  }
+
+  &TopSide {
+    .step {
+      &-text {
+        top: -$labelPos;
+      }
+    }
+  }
+
+  &BottomSide {
+    .step {
+      &-text {
+        bottom: -$labelPos;
+      }
+    }
+  }
+
+  &TopCenter,
+  &BottomCenter {
+    .step {
+      &:last-child {
+        &:after {
+          display: block;
+        }
+      }
+
+      &:first-child {
+        .step {
+          &-line {
+            background: $secondary-color;
+          }
+        }
+      }
+
+      &--complete {
+        &+.step {
+          .step {
+            &-line {
+              background: $secondary-color;
+            }
+          }
+        }
+
+        &+.step--complete {
+          .step {
+            &-line {
+              background: $primary-color
+            }
+          }
+        }
+      }
+
+      &-text {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  &TopCenter {
+    .step {
+      &-text {
+        top: -$labelPos;
+      }
+    }
+  }
+
+  &BottomCenter {
+    .step {
+      &-text {
+        bottom: -$labelPos;
+      }
+    }
+  }
+}

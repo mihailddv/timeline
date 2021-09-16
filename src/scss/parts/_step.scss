@@ -1,0 +1,86 @@
+.step {
+  position: relative;
+  transition: .3s;
+
+  &:before,
+  &:after {
+    @include pseudo;
+
+    top: 50%;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid $gray;
+    transform: translateY(-50%);
+    transition: .3s;
+  }
+
+  &:after {
+    display: none;
+    right: -10px;
+    left: auto;
+  }
+
+  &:first-child {
+
+    &:before,
+    &:after {
+      border-color: $secondary-color;
+      background: $secondary-color;
+    }
+  }
+
+  &-text {
+    position: absolute;
+    white-space: nowrap;
+    color: #949494;
+    transition: .3s;
+  }
+
+  &-line {
+    position: absolute;
+    width: calc(100% - 18px);
+    height: 3px;
+    background: $gray;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    transition: .3s;
+  }
+
+  &--complete,
+  &:first-child.step--complete {
+
+    &:before,
+    &:after {
+      border-color: $primary-color;
+      background: $primary-color;
+    }
+
+    .step {
+      &-line {
+        background: $primary-color;
+      }
+    }
+
+    &+.step {
+
+      &:before,
+      &:after {
+        border-color: $secondary-color;
+        background: $secondary-color;
+      }
+    }
+
+    &+.step--complete {
+
+      &:before,
+      &:after {
+        border-color: $primary-color;
+        background: $primary-color;
+      }
+    }
+  }
+}
